@@ -100,6 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
+      stopInterval();
     });
     scoreSpan.style.display = "inline";
     scoreSpan.innerHTML = `Your Score is: ${score}`;
@@ -132,7 +133,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   time.textContent = minutes + ":" + seconds;
   if(timerDuration === 0) {
-    stopInterval()
+    stopInterval();
     calculateScore();
   }
   timerDuration--;
