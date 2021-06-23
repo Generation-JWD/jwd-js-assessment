@@ -17,12 +17,12 @@
     <title>Quiz</title>
   </head>
   <body>
-    <div class="container m-5" id="start">
-      <div class="card" style="width: 18rem">
-        <div class="card-body">
-          <h5 class="card-title">Test your knowledge</h5>
-          <p class="card-text">Some quick description about the quiz .</p>
-          <a class="btn btn-primary">Start</a>
+    <div class="container d-flex justify-content-center m-5" id="start">
+      <div class="card border border-danger" style="width: 18rem">
+        <div class="card-body text-center">
+          <h5 class="card-title text-success">Test your knowledge</h5>
+          <p class="card-text">Click the button below to start the quiz .</p>
+          <button class="btn btn-primary">Start</button>
         </div>
       </div>
     </div>
@@ -35,14 +35,14 @@
       </div>
       <div id="quizWrap"></div>
 
-      <div>
-        <button type="button" class="btn btn-primary" id="btnSubmit">
+      <div class="mb-5">
+        <button type="button" class="btn btn-primary mx-2" id="btnSubmit">
           Submit Quiz
         </button>
-        <button type="button" class="btn btn-primary" id="btnReset">
+        <button type="button" class="btn btn-primary mx-2" id="btnReset">
           Reset Quiz
         </button>
-        <span id="score"></span>
+        <span id="score" class="mx-3"></span>
       </div>
     </div>
 

@@ -44,6 +44,16 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: "What is the full form of HTTPS",
+      o: ["Hipster Transfer Protocol Secure", "Happy to Trick People and Snakes", "Hindenberg Tourist Travel Prime Support", "Hypertext Transfer Protocol Secure"],
+      a: 3,
+    },
+    {
+      q: "Earth is protected from ultra violet radioation by",
+      o: ["Ozone", "Oxygen", "Superman", "Carbon Dioxide"],
+      a: 0,
+    },
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -66,25 +76,72 @@ window.addEventListener('DOMContentLoaded', () => {
   // Calculate the score
   const calculateScore = () => {
     let score = 0;
+    const scoreSpan = document.querySelector("#score");
     quizArray.map((quizItem, index) => {
       for (let i = 0; i < 4; i++) {
         //highlight the li if it is the correct answer
         let li = `li_${index}_${i}`;
         let r = `radio_${index}_${i}`;
-        liElement = document.querySelector('#' + li);
-        radioElement = document.querySelector('#' + r);
+        let liElement = document.querySelector('#' + li);
+        let radioElement = document.querySelector('#' + r);
 
         if (quizItem.a == i) {
           //change background color of li element here
+          liElement.style.backgroundColor = "#8cabdb";
         }
 
         if (radioElement.checked) {
           // code for task 1 goes here
+          let checkedId = parseInt(radioElement.id.slice(-1));
+          //console.log(radioElement.id.slice(-1));
+          //console.log(checkedId.slice(-1));
+          if (checkedId === quizArray[index].a){
+            score++;
+          }
         }
       }
     });
+    scoreSpan.style.display = "inline";
+    scoreSpan.innerHTML = `Your Score is: ${score}`;
+    //return score;
   };
 
   // call the displayQuiz function
   displayQuiz();
+
+  //submit quiz
+  const  btnSubmit = document.querySelector("#btnSubmit");
+  btnSubmit.addEventListener("click", calculateScore);
+
+  // reload the page when reset the quiz
+  const btnReset = document.querySelector("#btnReset");
+  const reloadPg = () => {
+   window.location.reload();
+  };
+  btnReset.addEventListener("click", reloadPg);
+
+  //display countdown time
+  const time = document.querySelector("#time");
+  let timerDuration = 20;
+  const countdown = setInterval(function() {
+  //console.log(timerDuration);
+  minutes = parseInt(timerDuration / 60, 10);
+  seconds = parseInt(timerDuration % 60, 10);
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  time.textContent = minutes + ":" + seconds;
+  if(timerDuration === 0) {
+    stopInterval()
+    calculateScore();
+  }
+  timerDuration--;
+  }, 1000);
+
+  const stopInterval = function() {
+  //console.log('time is up!');
+  clearInterval(countdown);
+  };  
+
+
 });
